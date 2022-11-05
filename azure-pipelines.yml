@@ -4,6 +4,19 @@
 # https://aka.ms/yaml
 
 trigger:
+- task: ArchiveFiles@2
+- task: ExtractFiles@1
+  inputs:
+    archiveFilePatterns: '**/*.zip'
+    destinationFolder: 'C:\Users\nezhar\Desktop\roz'
+    cleanDestinationFolder: true
+    overwriteExistingFiles: true
+  inputs:
+    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
 - main
 
 pool:
